@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saint.digitalCookbook.dao.RecipeDetailMapper">
+	<select id="selectRecipeDetail" parameterType="java.lang.String" resultType="com.saint.digitalCookbook.entity.RecipeDetail">
+		SELECT * FROM recipe_detail WHERE recipe_id = #{recipeId}
+    </select>
+    
+    <insert id="insertRecipeDetail" parameterType="com.saint.digitalCookbook.entity.RecipeDetail">
+    	INSERT INTO recipe_detail
+    	VALUES (#{recipeId}, #{timeForPre}, #{timeForCook}, #{cookSteps})
+    </insert> 
+    
+    <update id="updateRecipeDetail" parameterType="com.saint.digitalCookbook.entity.RecipeDetail">
+    	UPDATE recipe_detail SET
+    		time_for_pre = #{timeForPre},
+    		time_for_cook = #{timeForCook},
+    		cook_steps = #{cookSteps}
+   		WHERE recipe_id = #{recipeId}
+    </update>
+    
+    <delete id="deleteRecipeDetail" parameterType="java.lang.String">
+    	DELETE FROM recipe_detail
+    	WHERE recipe_id = #{recipeId}
+    </delete>
+    
+    <delete id="deleteAllRecipeDetails">
+    	DELETE FROM recipe_detail
+    </delete>
+
+</mapper>
+

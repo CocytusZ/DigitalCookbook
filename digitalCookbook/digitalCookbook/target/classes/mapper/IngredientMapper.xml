@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saint.digitalCookbook.dao.IngredientMapper">
+	
+	<select id="selectIngredient" parameterType="java.lang.String" resultType="com.saint.digitalCookbook.entity.Ingredient">
+		SELECT * FROM ingredient WHERE ingredient_id = #{recipeId}
+    </select>
+    
+    <insert id="insertIngredient" parameterType="com.saint.digitalCookbook.entity.Ingredient">
+    	INSERT INTO ingredient
+    	VALUES (#{recipeId}, #{ingredientId}, #{name}, #{amount}, #{unit})
+    </insert>
+    
+    <update id="updateIngredient" parameterType="com.saint.digitalCookbook.entity.Ingredient">
+    	UPDATE ingredient SET
+    		name = #{name},
+    		amount = #{amount},
+    		unit = #{unit}
+   		WHERE recipe_id = #{recipeId}
+   			AND ingredient_id = #{ingredientId}
+    </update>
+    
+    <delete id="deleteIngredient" parameterType="com.saint.digitalCookbook.entity.Ingredient">
+    	DELETE FROM ingredient
+    	WHERE recipe_id = #{recipeId}
+    		AND ingredient_id = #{ingredientId}
+    </delete>
+    
+    <select id="selectIngredientsByRecipe" parameterType="java.lang.String" resultType="com.saint.digitalCookbook.entity.Ingredient">
+    	SELECT * FROM ingredient
+    	WHERE recipe_id = #{recipeId}
+    </select>
+    
+    <select id="countIngredientsByRecipe" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM ingredient
+    	WHERE recipe_id = #{recipeId}
+    </select>
+    
+    <delete id="deleteIngredientsByRecipe" parameterType="java.lang.String">
+    	DELETE FROM ingredient
+    	WHERE recipe_id = #{recipeId}
+    </delete>
+    
+    <delete id="deleteAllIngredient">
+    	DELETE FROM ingredient
+    </delete>
+    
+</mapper>
+
